@@ -26,10 +26,15 @@ using namespace tbb;
 
 #elif EXAFMM_WITH_MTHREAD
 /* MassiveThreads (TBB-like interface on top of MassiveThreads)  */
-//#define num_threads(E)		      myth_init_ex(E, 1 << 16)
-#define num_threads(E)		      do { myth_globalattr_set_stacksize(0, 1 << 16); myth_globalattr_set_n_workers(0, E); myth_init(); } while (0)
 #define TO_MTHREAD_NATIVE 1
 #include <tpswitch/tpswitch.h>
+static inline void num_threads_(int e) {
+  myth_globalattr_t ga[1];
+  myth_globalattr_set_n_workers(ga, e);
+  myth_globalattr_set_stacksize(ga, 1 << 16);
+  myth_init_ex(ga);
+}
+#define num_threads(E)		      num_threads_(E)
 
 #elif EXAFMM_WITH_CILK
 #define num_threads(E)                char nworkers[32]; sprintf(nworkers,"%d",E); __cilkrts_set_param("nworkers",nworkers)
