@@ -203,16 +203,16 @@ namespace exafmm {
 
   public:
     Args(int argc=0, char ** argv=NULL) :
-      accuracy(0),
+      accuracy(1),
       ncrit(64),
       cutoff(.0),
-      distribution("cube"),
-      dual(0),
+      distribution("plummer"),
+      dual(1),
       graft(0),
       getMatrix(0),
       images(0),
       IneJ(0),
-      mutual(0),
+      mutual(1),
       numBodies(1000000),
       useRopt(0),
       path("./"),
@@ -220,8 +220,8 @@ namespace exafmm {
       repeat(1),
       nspawn(5000),
       theta(.4),
-      threads(16),
-      verbose(0),
+      threads(1),
+      verbose(1),
       write(0),
       useRmax(0) {
       while (1) {
