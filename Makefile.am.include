@@ -20,13 +20,13 @@ AM_CXXFLAGS += -ffast-math -funroll-loops -fabi-version=6
 AM_FCFLAGS += -ffast-math -funroll-loops
 endif
 if EXAFMM_HAVE_INTEL
-AM_CXXFLAGS += -no-ansi-alias -fabi-version=6
-AM_FCFLAGS += -no-ansi-alias
+AM_CXXFLAGS += -ansi-alias -fabi-version=6
+AM_FCFLAGS += -ansi-alias
 endif
 else
 if EXAFMM_HAVE_INTEL
-AM_CXXFLAGS = -no-ansi-alias -fabi-version=6
-AM_FCFLAGS = -no-ansi-alias
+AM_CXXFLAGS = -ansi-alias -fabi-version=6
+AM_FCFLAGS = -ansi-alias
 else
 if EXAFMM_HAVE_CLANG
 AM_CXXFLAGS = -ffast-math -funroll-loops
